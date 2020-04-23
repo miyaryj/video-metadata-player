@@ -2,17 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Store } from "../store";
 import { Chart } from "react-google-charts";
-import DataLoader from "../data-loader";
 
-interface MetadataViewProps {
-  data: DataLoader;
-}
-
-const MetadataView = (props: MetadataViewProps) => {
+const MetadataView = () => {
   const config = useSelector((state: Store) => state.config);
-  const videoTime = useSelector((state: Store) => state.videoTime);
-  const time = Math.floor(videoTime * 10) / 10;
-  const currentData = props.data.get(time) as any;
+  const currentData = useSelector((state: Store) => state.currentData);
 
   return (
     <Chart
@@ -20,7 +13,7 @@ const MetadataView = (props: MetadataViewProps) => {
       loader={<div>Loading Chart</div>}
       data={[
         ["Name", "Value"],
-        ...config.selection.map((column) => [column, currentData ? Number(currentData[column]) : 0]),
+        ...config.selection.map((column) => [column, Number(currentData[column])]),
       ]}
       options={{
         hAxis: {

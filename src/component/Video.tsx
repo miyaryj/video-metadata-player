@@ -1,15 +1,12 @@
 import React, { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Store } from "../store";
 import action from "../action";
 
-interface VideoProps {
-  src: string;
-}
-
-const Video = (props: VideoProps) => {
+const Video = () => {
+  const src = useSelector((state: Store) => state.source.videoPath);
   const dispatch = useDispatch();
 
-  const { src } = props;
   console.log("video", src);
 
   const videoRef = useRef<HTMLVideoElement>(null);

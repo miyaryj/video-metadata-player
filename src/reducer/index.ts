@@ -9,7 +9,8 @@ const reducer = createReducer<Store>(
       videoPath: `media/${config.sources[0].video}`,
       dataPath: `data/${config.sources[0].data}`
     },
-    videoTime: 0
+    videoTime: 0,
+    currentData: {}
   },
   {
     setSource: (state: Store, action) => {
@@ -22,6 +23,10 @@ const reducer = createReducer<Store>(
     setVideoTime: (state: Store, action) => {
       const { time } = action.payload;
       state.videoTime = time;
+    },
+    setCurrentData: (state: Store, action) => {
+      const { data } = action.payload;
+      state.currentData = data;
     }
   }
 );

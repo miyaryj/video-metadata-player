@@ -2,6 +2,7 @@ export interface Store {
   config: Config;
   source: Source;
   videoTime: number;
+  currentData: DataRow;
 }
 
 export interface Config {
@@ -20,4 +21,8 @@ export interface ConfigSource {
 export interface Source {
   videoPath: string;
   dataPath: string;
+}
+
+export interface DataRow {
+  [column: string]: number;
 }
